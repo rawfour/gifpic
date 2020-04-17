@@ -1,25 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Router, Switch, Route, Redirect } from 'react-router-dom';
+import history from 'history.js';
+import ImageList from 'views/ImageList';
+import Settings from 'views/Settings';
+import NotFound from 'views/NotFound';
+import ErrorView from 'views/Error';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router history={history}>
+      <Switch>
+        <Route
+          path={`${process.env.PUBLIC_URL}/`}
+          exact
+          render={() => <Redirect to={`${process.env.PUBLIC_URL}/images`} />}
+        />
+        <Route path={`${process.env.PUBLIC_URL}/images`} exact component={ImageList} />
+        <Route path={`${process.env.PUBLIC_URL}/settings`} exact component={Settings} />
+        <Route path={`${process.env.PUBLIC_URL}/notFound`} exact component={NotFound} />
+        <Route path={`${process.env.PUBLIC_URL}/error`} exact component={ErrorView} />
+        <Route path="*/error" render={() => <Redirect to={`${process.env.PUBLIC_URL}/error`} />} />
+        <Route render={() => <Redirect to={`${process.env.PUBLIC_URL}/notFound`} />} />
+      </Switch>
+    </Router>
   );
 }
 
