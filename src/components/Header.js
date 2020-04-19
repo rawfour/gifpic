@@ -5,6 +5,7 @@ import logo from 'assets/img/logo.png';
 import SettingsIcon from '@material-ui/icons/Settings';
 import Searchbar from 'components/Searchbar';
 import Tooltip from 'components/Tooltip';
+import { makeStyles } from '@material-ui/core/styles';
 
 const StyledHeader = styled.header`
   width: 100%;
@@ -18,17 +19,18 @@ const StyledToolbar = styled.div`
   align-items: center;
   padding: 15px;
   flex-wrap: wrap;
-  ${({ theme }) => theme.breakpoints.up('sm')} {
+  ${({ theme }) => theme.breakpoints.sm} {
     justify-content: flex-start;
   }
 `;
 
 const StyledLogoWrapper = styled(Link)`
   flex-basis: 80px;
-  ${({ theme }) => theme.breakpoints.up('sm')} {
+  outline: 0;
+  ${({ theme }) => theme.breakpoints.sm} {
     flex-basis: 100px;
   }
-  ${({ theme }) => theme.breakpoints.up('lg')} {
+  ${({ theme }) => theme.breakpoints.lg} {
     flex-basis: 130px;
   }
 `;
@@ -46,16 +48,24 @@ const StyledSettingsWrapper = styled(Link)`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: ${({ theme }) => theme.palette.text.primary};
+  outline: 0;
+  color: ${({ theme }) => theme.colors.text};
   &:hover ${StyledSettingsIcon} {
     transform: rotate(120deg);
   }
-  ${({ theme }) => theme.breakpoints.up('sm')} {
+  ${({ theme }) => theme.breakpoints.sm} {
     margin-left: auto;
   }
 `;
 
+const useStyles = makeStyles(() => ({
+  customIcon: {
+    fontSize: '2.2rem',
+  },
+}));
+
 const Header = () => {
+  const classes = useStyles();
   return (
     <StyledHeader>
       <StyledToolbar>
@@ -65,7 +75,7 @@ const Header = () => {
         <Searchbar />
         <Tooltip title="Settings">
           <StyledSettingsWrapper to={`${process.env.PUBLIC_URL}/settings`}>
-            <StyledSettingsIcon />
+            <StyledSettingsIcon className={classes.customIcon} />
           </StyledSettingsWrapper>
         </Tooltip>
       </StyledToolbar>

@@ -5,12 +5,12 @@ import SearchIcon from 'assets/svg/SearchIcon.svg';
 const StyledSearchbarWrapper = styled.form`
   flex-basis: 100%;
   order: 2;
-  ${({ theme }) => theme.breakpoints.up('sm')} {
+  ${({ theme }) => theme.breakpoints.sm} {
     flex-basis: 300px;
     order: 0;
     margin-left: 20px;
   }
-  ${({ theme }) => theme.breakpoints.up('md')} {
+  ${({ theme }) => theme.breakpoints.md} {
     flex-basis: 400px;
   }
 `;
@@ -22,22 +22,22 @@ const StyledSearchInput = styled.input`
   margin-top: 20px;
   border: none;
   background: url(${SearchIcon}) no-repeat 1.8rem 50%;
-  background-color: ${({ theme }) => theme.palette.background.default};
+  background-color: ${({ theme }) => theme.colors.grayBackground};
   transition: 0.5s;
-  color: ${({ theme }) => theme.palette.text.disabled};
+  color: ${({ theme }) => theme.colors.text};
   font-size: 1.6rem;
   &:focus {
     box-shadow: 0 0 30px 0 rgba(43, 86, 112, 0.1);
-    background-color: ${({ theme }) => theme.palette.background.paper};
+    background-color: ${({ theme }) => theme.colors.focusBackground};
   }
-  ${({ theme }) => theme.breakpoints.up('sm')} {
+  ${({ theme }) => theme.breakpoints.sm} {
     margin: 0;
     width: 220px;
     &:focus {
       width: 100%;
     }
   }
-  ${({ theme }) => theme.breakpoints.up('md')} {
+  ${({ theme }) => theme.breakpoints.md} {
     width: 350px;
   }
 `;

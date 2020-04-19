@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button as ButtonUi } from '@material-ui/core';
+// import { Button as ButtonUi } from '@material-ui/core';
 
 const Button = ({ children, variant, color }) => {
   return (
-    <ButtonUi variant={variant} color={color}>
+    <button type="button" variant={variant} color={color}>
       {children}
-    </ButtonUi>
+    </button>
   );
 };
 

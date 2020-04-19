@@ -17,9 +17,11 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
+    transition: .5s;
     font-size: 1.6rem;
     font-family: 'Montserrat', sans-serif;
-    color: ${({ theme }) => theme.palette.text.primary};
+    color: ${({ theme }) => theme.colors.text};
+    background-color: ${({ theme }) => theme.colors.background};
   }
 
 `;

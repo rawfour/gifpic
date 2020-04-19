@@ -12,7 +12,7 @@ import GlobalStyle from 'theme/GlobalStyle';
 
 const StyledMainwrapper = styled.div`
   max-width: 1500px;
-  margin: 65px auto;
+  margin: 40px auto;
   padding: 15px;
 `;
 

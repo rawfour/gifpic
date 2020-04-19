@@ -5,7 +5,7 @@ import { Tooltip as TooltipUi } from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
   customTooltip: {
-    fontSize: '1.1rem',
+    fontSize: '1rem',
   },
 }));
 
