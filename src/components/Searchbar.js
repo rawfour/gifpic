@@ -5,12 +5,12 @@ import SearchIcon from 'assets/svg/SearchIcon.svg';
 const StyledSearchbarWrapper = styled.form`
   flex-basis: 100%;
   order: 2;
-  ${({ theme }) => theme.breakpoints.sm} {
+  @media ${({ theme }) => theme.breakpoints.sm} {
     flex-basis: 300px;
     order: 0;
     margin-left: 20px;
   }
-  ${({ theme }) => theme.breakpoints.md} {
+  @media ${({ theme }) => theme.breakpoints.md} {
     flex-basis: 400px;
   }
 `;
@@ -30,14 +30,14 @@ const StyledSearchInput = styled.input`
     box-shadow: 0 0 30px 0 rgba(43, 86, 112, 0.1);
     background-color: ${({ theme }) => theme.colors.focusBackground};
   }
-  ${({ theme }) => theme.breakpoints.sm} {
+  @media ${({ theme }) => theme.breakpoints.sm} {
     margin: 0;
     width: 220px;
     &:focus {
       width: 100%;
     }
   }
-  ${({ theme }) => theme.breakpoints.md} {
+  @media ${({ theme }) => theme.breakpoints.md} {
     width: 350px;
   }
 `;
@@ -51,5 +51,3 @@ const Searchbar = () => {
 };
 
 export default Searchbar;
-
-// box-shadow: ${({ theme }) => console.log(theme)};

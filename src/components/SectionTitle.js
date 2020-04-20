@@ -6,9 +6,8 @@ const StyledSectionTitle = styled.h2`
   margin-bottom: 50px;
   font-weight: 700;
   font-size: 3.5rem;
-  ${({ theme }) => theme.breakpoints.md} {
+  @media ${({ theme }) => theme.breakpoints.md} {
     font-size: 4.5rem;
-    margin-bottom: 80px;
   }
 `;
 

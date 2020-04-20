@@ -94,6 +94,8 @@ const customTheme = createMuiTheme({
   },
 });
 
+// changeLang - add to props
+
 const Settings = ({ changeTheme, isDark }) => {
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -112,11 +114,11 @@ const Settings = ({ changeTheme, isDark }) => {
         <StyledOptionWrapper>
           <StyledOptionDescription>
             <Title>Theme</Title>
-            <Text clasName="dsfdsfds">Choose a page color theme.</Text>
+            <Text clasName="dsfdsfds">Change the color theme of the page.</Text>
           </StyledOptionDescription>
           <StyledOption>
-            <Tooltip title="Toggle light/dark theme">
-              <ThemeProvider theme={customTheme}>
+            <ThemeProvider theme={customTheme}>
+              <Tooltip title="Toggle light/dark theme">
                 <Switch
                   checked={isDark}
                   onChange={() => changeTheme(!isDark)}
@@ -124,8 +126,8 @@ const Settings = ({ changeTheme, isDark }) => {
                   inputProps={{ 'aria-label': 'secondary checkbox' }}
                   color="primary"
                 />
-              </ThemeProvider>
-            </Tooltip>
+              </Tooltip>
+            </ThemeProvider>
           </StyledOption>
         </StyledOptionWrapper>
 

@@ -6,7 +6,7 @@ const StyledTitle = styled.h4`
   margin: 10px 0;
   font-weight: 700;
   font-size: 1.8rem;
-  ${({ theme }) => theme.breakpoints.md} {
+  @media ${({ theme }) => theme.breakpoints.md} {
     font-size: 2rem;
   }
 `;

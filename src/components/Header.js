@@ -19,7 +19,7 @@ const StyledToolbar = styled.div`
   align-items: center;
   padding: 15px;
   flex-wrap: wrap;
-  ${({ theme }) => theme.breakpoints.sm} {
+  @media ${({ theme }) => theme.breakpoints.sm} {
     justify-content: flex-start;
   }
 `;
@@ -27,10 +27,10 @@ const StyledToolbar = styled.div`
 const StyledLogoWrapper = styled(Link)`
   flex-basis: 80px;
   outline: 0;
-  ${({ theme }) => theme.breakpoints.sm} {
+  @media ${({ theme }) => theme.breakpoints.sm} {
     flex-basis: 100px;
   }
-  ${({ theme }) => theme.breakpoints.lg} {
+  @media ${({ theme }) => theme.breakpoints.lg} {
     flex-basis: 130px;
   }
 `;
@@ -53,7 +53,7 @@ const StyledSettingsWrapper = styled(Link)`
   &:hover ${StyledSettingsIcon} {
     transform: rotate(120deg);
   }
-  ${({ theme }) => theme.breakpoints.sm} {
+  @media ${({ theme }) => theme.breakpoints.sm} {
     margin-left: auto;
   }
 `;

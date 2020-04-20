@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const StyledText = styled.span`
   font-size: 1.6rem;
-  ${({ theme }) => theme.breakpoints.md} {
+  @media ${({ theme }) => theme.breakpoints.md} {
     font-size: 2rem;
   }
 `;
