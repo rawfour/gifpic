@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { withNamespaces } from 'react-i18next';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import SectionTitle from 'components/SectionTitle';
@@ -8,15 +9,14 @@ import Text from 'components/Text';
 import Tooltip from 'components/Tooltip';
 import Switch from '@material-ui/core/Switch';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
 import {
   changeLang as changeLangAction,
   changeTheme as changeThemeAction,
 } from 'services/settings/actions';
+import i18n from '../i18n';
 
 const StyledSettingsWrapper = styled.div`
   display: grid;
@@ -96,29 +96,32 @@ const customTheme = createMuiTheme({
 
 // changeLang - add to props
 
-const Settings = ({ changeTheme, isDark }) => {
+const Settings = ({ changeTheme, isDark, t }) => {
   const [anchorEl, setAnchorEl] = useState(null);
+  const [currentLang, setCurrentLang] = useState('English');
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const handleClose = (lang_full, lang_short) => {
+    setCurrentLang(lang_full);
+    i18n.changeLanguage(lang_short);
     setAnchorEl(null);
   };
 
   return (
     <>
-      <SectionTitle>Settings</SectionTitle>
+      <SectionTitle>{t('Settings')}</SectionTitle>
       <StyledSettingsWrapper>
         <StyledOptionWrapper>
           <StyledOptionDescription>
-            <Title>Theme</Title>
-            <Text clasName="dsfdsfds">Change the color theme of the page.</Text>
+            <Title>{t('Theme')}</Title>
+            <Text clasName="dsfdsfds">{t('Theme_desc')}</Text>
           </StyledOptionDescription>
           <StyledOption>
             <ThemeProvider theme={customTheme}>
-              <Tooltip title="Toggle light/dark theme">
+              <Tooltip title={t('Theme_toggle')}>
                 <Switch
                   checked={isDark}
                   onChange={() => changeTheme(!isDark)}
@@ -133,8 +136,8 @@ const Settings = ({ changeTheme, isDark }) => {
 
         <StyledOptionWrapper>
           <StyledOptionDescription>
-            <Title>Language</Title>
-            <Text clasName="dsfdsfds">Set the language of the keywords entered.</Text>
+            <Title>{t('Lang')}</Title>
+            <Text clasName="dsfdsfds">{t('Lang_desc')}</Text>
           </StyledOptionDescription>
 
           <StyledOption>
@@ -145,7 +148,7 @@ const Settings = ({ changeTheme, isDark }) => {
                 aria-haspopup="true"
                 onClick={handleClick}
               >
-                English
+                {t(currentLang)}
                 <ExpandMoreIcon />
               </StyledMenuButton>
               <StyledMenu
@@ -153,13 +156,17 @@ const Settings = ({ changeTheme, isDark }) => {
                 anchorEl={anchorEl}
                 keepMounted
                 open={Boolean(anchorEl)}
-                onClose={handleClose}
+                onClose={() => setAnchorEl(null)}
               >
-                <StyledMenuItem onClick={handleClose}>Deutsch</StyledMenuItem>
-                <StyledMenuItem onClick={handleClose}>English</StyledMenuItem>
-                <StyledMenuItem onClick={handleClose}>Español</StyledMenuItem>
-                <StyledMenuItem onClick={handleClose}>Français</StyledMenuItem>
-                <StyledMenuItem onClick={handleClose}>Polish</StyledMenuItem>
+                <StyledMenuItem onClick={() => handleClose('Deutsch', 'de')}>
+                  {t('Deutsch')}
+                </StyledMenuItem>
+                <StyledMenuItem onClick={() => handleClose('English', 'en')}>
+                  {t('English')}
+                </StyledMenuItem>
+                <StyledMenuItem onClick={() => handleClose('Polish', 'pl')}>
+                  {t('Polish')}
+                </StyledMenuItem>
               </StyledMenu>
             </ThemeProvider>
           </StyledOption>
@@ -170,7 +177,7 @@ const Settings = ({ changeTheme, isDark }) => {
 };
 
 Settings.propTypes = {
-  // changeLang: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired,
   changeTheme: PropTypes.func.isRequired,
   isDark: PropTypes.bool.isRequired,
 };
@@ -184,4 +191,4 @@ const mapStateToProps = (state) => ({
   isDark: state.settings.darkTheme,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Settings);
+export default connect(mapStateToProps, mapDispatchToProps)(withNamespaces()(Settings));

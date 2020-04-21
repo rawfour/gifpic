@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withNamespaces } from 'react-i18next';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import SearchIcon from 'assets/svg/SearchIcon.svg';
@@ -48,7 +49,7 @@ const StyledSearchInput = styled.input`
   }
 `;
 
-const Searchbar = ({ fetchImages, inputChange, query }) => {
+const Searchbar = ({ fetchImages, inputChange, query, t }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     fetchImages();
@@ -60,7 +61,7 @@ const Searchbar = ({ fetchImages, inputChange, query }) => {
         type="text"
         value={query}
         onChange={(e) => inputChange(e.target.value)}
-        placeholder="Search..."
+        placeholder={t('Search')}
       />
     </StyledSearchbarWrapper>
   );
@@ -70,6 +71,7 @@ Searchbar.propTypes = {
   query: PropTypes.string,
   inputChange: PropTypes.func.isRequired,
   fetchImages: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
 Searchbar.defaultProps = {
@@ -85,4 +87,4 @@ const mapStateToProps = (state) => ({
   query: state.images.query,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Searchbar);
+export default connect(mapStateToProps, mapDispatchToProps)(withNamespaces()(Searchbar));

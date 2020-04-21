@@ -1,5 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { withNamespaces } from 'react-i18next';
 import styled from 'styled-components';
 import logo from 'assets/img/logo.png';
 import SettingsIcon from '@material-ui/icons/Settings';
@@ -64,7 +66,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const Header = () => {
+const Header = ({ t }) => {
   const classes = useStyles();
   return (
     <StyledHeader>
@@ -73,7 +75,7 @@ const Header = () => {
           <StyledLogo src={logo} alt="logo" />
         </StyledLogoWrapper>
         <Searchbar />
-        <Tooltip title="Settings">
+        <Tooltip title={t('Settings')}>
           <StyledSettingsWrapper to={`${process.env.PUBLIC_URL}/settings`}>
             <StyledSettingsIcon className={classes.customIcon} />
           </StyledSettingsWrapper>
@@ -83,8 +85,8 @@ const Header = () => {
   );
 };
 
-export default Header;
+Header.propTypes = {
+  t: PropTypes.func.isRequired,
+};
 
-//  @media ${({ theme }) => theme.breakpoints.up('md')} {
-//   flex-basis: 200px;
-// }
+export default withNamespaces()(Header);

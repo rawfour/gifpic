@@ -7,6 +7,7 @@ const gf = new GiphyFetch(giphyApiKey);
 
 export const fetchImages = () => async (dispatch, getState) => {
   const { query } = getState().images;
+  const { lang } = getState().settings;
   try {
     dispatch({ type: FETCH_BEGINE });
     if (history.location.pathname !== '/images') {
@@ -14,7 +15,7 @@ export const fetchImages = () => async (dispatch, getState) => {
     }
     const limit = 25;
     const fetchGifs = (offset) =>
-      query ? gf.search(query, { offset, limit }) : gf.trending({ offset, limit });
+      query ? gf.search(query, { offset, limit, lang }) : gf.trending({ offset, limit });
     await setTimeout(() => {
       dispatch({
         type: FETCH_DONE,

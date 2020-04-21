@@ -1,7 +1,7 @@
 import { CHANGE_LANG, CHANGE_THEME } from 'services/actionTypes';
 
 const initialState = {
-  language: 'en',
+  lang: 'en',
   darkTheme: false,
 };
 
@@ -10,7 +10,7 @@ const settingsReducer = (state = initialState, action) => {
     case CHANGE_LANG:
       return {
         ...state,
-        language: action.payload,
+        lang: action.payload,
       };
     case CHANGE_THEME:
       return {
