@@ -1,4 +1,4 @@
-import { FETCH_BEGINE, FETCH_DONE, SET_ERROR, INPUT_CHANGE } from 'services/actionTypes';
+import { FETCH_BEGINE, FETCH_DONE, SET_ERROR, SET_QUERY } from 'services/actionTypes';
 import history from 'history.js';
 import { GiphyFetch } from '@giphy/js-fetch-api';
 
@@ -7,7 +7,7 @@ const gf = new GiphyFetch(giphyApiKey);
 
 export const fetchImages = () => async (dispatch, getState) => {
   const { query } = getState().images;
-  const { lang } = getState().settings;
+  // const { lang } = getState().settings;
   try {
     dispatch({ type: FETCH_BEGINE });
     if (history.location.pathname !== '/images') {
@@ -15,7 +15,7 @@ export const fetchImages = () => async (dispatch, getState) => {
     }
     const limit = 25;
     const fetchGifs = (offset) =>
-      query ? gf.search(query, { offset, limit, lang }) : gf.trending({ offset, limit });
+      query ? gf.search(query, { offset, limit }) : gf.trending({ offset, limit });
     await setTimeout(() => {
       dispatch({
         type: FETCH_DONE,
@@ -28,7 +28,7 @@ export const fetchImages = () => async (dispatch, getState) => {
   }
 };
 
-export const inputChange = (value) => ({
-  type: INPUT_CHANGE,
-  payload: value,
+export const setQuery = (inputValue) => ({
+  type: SET_QUERY,
+  payload: inputValue,
 });

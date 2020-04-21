@@ -1,4 +1,4 @@
-import { FETCH_BEGINE, FETCH_DONE, SET_ERROR, INPUT_CHANGE } from 'services/actionTypes';
+import { FETCH_BEGINE, FETCH_DONE, SET_ERROR, SET_QUERY } from 'services/actionTypes';
 
 const initialState = {
   images: null,
@@ -17,7 +17,7 @@ const imagesListReducer = (state = initialState, action) => {
         loading: false,
         images: action.payload,
       };
-    case INPUT_CHANGE:
+    case SET_QUERY:
       return {
         ...state,
         query: action.payload,

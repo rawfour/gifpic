@@ -1,13 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import SearchIcon from 'assets/svg/SearchIcon.svg';
-import {
-  inputChange as inputChangeAction,
-  fetchImages as fetchImagesAction,
-} from 'services/imageList/actions';
+import { setQuery as setQueryAction } from 'services/imageList/actions';
 
 const StyledSearchbarWrapper = styled.form`
   flex-basis: 100%;
@@ -49,18 +46,20 @@ const StyledSearchInput = styled.input`
   }
 `;
 
-const Searchbar = ({ fetchImages, inputChange, query, t }) => {
+const Searchbar = ({ setQuery, t }) => {
+  const [inputValue, setInputValue] = useState('');
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetchImages();
+    setQuery(inputValue);
   };
 
   return (
     <StyledSearchbarWrapper onSubmit={handleSubmit}>
       <StyledSearchInput
         type="text"
-        value={query}
-        onChange={(e) => inputChange(e.target.value)}
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
         placeholder={t('Search')}
       />
     </StyledSearchbarWrapper>
@@ -68,19 +67,12 @@ const Searchbar = ({ fetchImages, inputChange, query, t }) => {
 };
 
 Searchbar.propTypes = {
-  query: PropTypes.string,
-  inputChange: PropTypes.func.isRequired,
-  fetchImages: PropTypes.func.isRequired,
+  setQuery: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
 };
 
-Searchbar.defaultProps = {
-  query: '',
-};
-
 const mapDispatchToProps = (dispatch) => ({
-  inputChange: (value) => dispatch(inputChangeAction(value)),
-  fetchImages: () => dispatch(fetchImagesAction()),
+  setQuery: (inputValue) => dispatch(setQueryAction(inputValue)),
 });
 
 const mapStateToProps = (state) => ({

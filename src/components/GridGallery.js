@@ -28,7 +28,7 @@ function useWindowSize() {
   return size;
 }
 
-const GridGallery = ({ fetchImages, images, loading }) => {
+const GridGallery = ({ fetchImages, images, loading, query }) => {
   const [width] = useWindowSize();
   const [wrapperWidth, setWrapperWidth] = useState();
   const [columnsCount, setColumnsCount] = useState();
@@ -47,7 +47,7 @@ const GridGallery = ({ fetchImages, images, loading }) => {
 
   useEffect(() => {
     fetchImages();
-  }, []);
+  }, [query]);
 
   return (
     <StyledGalleryWrapper ref={ref}>
@@ -64,10 +64,12 @@ GridGallery.propTypes = {
   fetchImages: PropTypes.func.isRequired,
   images: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   loading: PropTypes.bool.isRequired,
+  query: PropTypes.string,
 };
 
 GridGallery.defaultProps = {
   images: null,
+  query: '',
 };
 
 const mapDispatchToProps = (dispatch) => ({
@@ -77,6 +79,7 @@ const mapDispatchToProps = (dispatch) => ({
 const mapStateToProps = (state) => ({
   images: state.images.images,
   loading: state.images.loading,
+  query: state.images.query,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(GridGallery);

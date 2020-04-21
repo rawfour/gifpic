@@ -1,7 +1,7 @@
 import { CHANGE_LANG, CHANGE_THEME } from 'services/actionTypes';
 
 const initialState = {
-  lang: 'en',
+  lang: 'English',
   darkTheme: false,
 };
 

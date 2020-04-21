@@ -94,18 +94,15 @@ const customTheme = createMuiTheme({
   },
 });
 
-// changeLang - add to props
-
-const Settings = ({ changeTheme, isDark, t }) => {
+const Settings = ({ changeTheme, changeLang, currentLang, isDark, t }) => {
   const [anchorEl, setAnchorEl] = useState(null);
-  const [currentLang, setCurrentLang] = useState('English');
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
   const handleClose = (lang_full, lang_short) => {
-    setCurrentLang(lang_full);
+    changeLang(lang_full);
     i18n.changeLanguage(lang_short);
     setAnchorEl(null);
   };
@@ -178,17 +175,20 @@ const Settings = ({ changeTheme, isDark, t }) => {
 
 Settings.propTypes = {
   t: PropTypes.func.isRequired,
+  changeLang: PropTypes.func.isRequired,
   changeTheme: PropTypes.func.isRequired,
   isDark: PropTypes.bool.isRequired,
+  currentLang: PropTypes.string.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  changeLang: () => dispatch(changeLangAction()),
+  changeLang: (lang) => dispatch(changeLangAction(lang)),
   changeTheme: (checked) => dispatch(changeThemeAction(checked)),
 });
 
 const mapStateToProps = (state) => ({
   isDark: state.settings.darkTheme,
+  currentLang: state.settings.lang,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withNamespaces()(Settings));
