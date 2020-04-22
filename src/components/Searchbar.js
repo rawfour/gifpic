@@ -4,7 +4,10 @@ import { withNamespaces } from 'react-i18next';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import SearchIcon from 'assets/svg/SearchIcon.svg';
-import { setQuery as setQueryAction } from 'services/imageList/actions';
+import {
+  setQuery as setQueryAction,
+  fetchImages as fetchImagesAction,
+} from 'services/imageList/actions';
 
 const StyledSearchbarWrapper = styled.form`
   flex-basis: 100%;
@@ -46,12 +49,13 @@ const StyledSearchInput = styled.input`
   }
 `;
 
-const Searchbar = ({ setQuery, t }) => {
+const Searchbar = ({ setQuery, t, fetchImages }) => {
   const [inputValue, setInputValue] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setQuery(inputValue);
+    fetchImages();
   };
 
   return (
@@ -69,10 +73,12 @@ const Searchbar = ({ setQuery, t }) => {
 Searchbar.propTypes = {
   setQuery: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
+  fetchImages: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
   setQuery: (inputValue) => dispatch(setQueryAction(inputValue)),
+  fetchImages: () => dispatch(fetchImagesAction()),
 });
 
 const mapStateToProps = (state) => ({

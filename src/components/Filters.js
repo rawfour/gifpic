@@ -8,14 +8,26 @@ import { setLang as setLangAction, setLimit as setLimitAction } from 'services/i
 
 const StyledFiltersWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, auto);
   grid-gap: 20px;
-  justify-content: flex-end;
-  align-items: center;
   margin-bottom: 30px;
+  @media ${({ theme }) => theme.breakpoints.sm} {
+    grid-template-columns: repeat(2, auto);
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
 `;
 
-const Filters = ({ setLang, setLimit, t }) => {
+const Filters = ({ setLang, setLimit, t, lang, limit }) => {
+  const handleSetLang = (e) => {
+    const { value } = e.target;
+    setLang(value);
+  };
+
+  const handleSetLimit = (e) => {
+    const { value } = e.target;
+    setLimit(value);
+  };
+
   const limitList = {
     label: t('Limit'),
     options: [25, 50, 100],
@@ -61,8 +73,18 @@ const Filters = ({ setLang, setLimit, t }) => {
 
   return (
     <StyledFiltersWrapper>
-      <Select data={langList} tooltipText={t('Regional_tooltip')} action={setLang} />
-      <Select data={limitList} tooltipText={t('Limit_tooltip')} action={setLimit} />
+      <Select
+        data={langList}
+        tooltipText={t('Regional_tooltip')}
+        value={lang}
+        action={handleSetLang}
+      />
+      <Select
+        data={limitList}
+        tooltipText={t('Limit_tooltip')}
+        value={limit}
+        action={handleSetLimit}
+      />
     </StyledFiltersWrapper>
   );
 };
@@ -71,6 +93,8 @@ Filters.propTypes = {
   t: PropTypes.func.isRequired,
   setLang: PropTypes.func.isRequired,
   setLimit: PropTypes.func.isRequired,
+  lang: PropTypes.string.isRequired,
+  limit: PropTypes.string.isRequired,
 };
 
 const mapDispatchToProps = (dispatch) => ({
@@ -78,4 +102,9 @@ const mapDispatchToProps = (dispatch) => ({
   setLimit: (limit) => dispatch(setLimitAction(limit)),
 });
 
-export default connect(null, mapDispatchToProps)(withNamespaces()(Filters));
+const mapStateToProps = (state) => ({
+  lang: state.images.lang,
+  limit: state.images.limit,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(withNamespaces()(Filters));

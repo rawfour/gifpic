@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Tooltip from 'components/Tooltip';
@@ -28,9 +28,12 @@ const StyledSelect = styled.select`
   color: ${({ theme }) => theme.colors.text};
   border-radius: 30px;
   padding: 1rem 2rem;
-  min-width: 200px;
   font-size: 1.6rem;
+  min-width: 100%;
   appearance: none;
+  @media ${({ theme }) => theme.breakpoints.sm} {
+    min-width: 200px;
+  }
 `;
 
 const StyledSelectIcon = styled(ExpandMoreIcon)`
@@ -44,30 +47,23 @@ const StyledInnerWrapper = styled.div`
   position: relative;
 `;
 
-const Select = ({ data, tooltipText, action }) => {
+const Select = ({ data, tooltipText, action, value }) => {
   const { label, options } = data;
-  const [select, setSelect] = useState(options[0]);
-
-  const handleChange = (e) => {
-    const { value } = e.target;
-    setSelect(value);
-    if (action) {
-      action(value);
-    }
-  };
 
   return (
     <StyledSelectWrapper>
-      <StyledInput htmlFor="outlined-age-native-simple">
-        {label}
-        <Tooltip place="top" title={tooltipText}>
-          <HelpIcon />
-        </Tooltip>
-      </StyledInput>
+      {label && (
+        <StyledInput htmlFor="outlined-age-native-simple">
+          {label}
+          <Tooltip place="top" title={tooltipText}>
+            <HelpIcon />
+          </Tooltip>
+        </StyledInput>
+      )}
 
       <StyledInnerWrapper>
         <StyledSelectIcon />
-        <StyledSelect value={select} onChange={handleChange}>
+        <StyledSelect value={value} onChange={(e) => action(e)}>
           {options.map((item) => (
             <option key={item} value={item}>
               {item}
@@ -81,12 +77,14 @@ const Select = ({ data, tooltipText, action }) => {
 
 Select.propTypes = {
   data: PropTypes.shape().isRequired,
-  tooltipText: PropTypes.string.isRequired,
+  tooltipText: PropTypes.string,
   action: PropTypes.func,
+  value: PropTypes.string.isRequired,
 };
 
 Select.defaultProps = {
   action: null,
+  tooltipText: null,
 };
 
 export default Select;

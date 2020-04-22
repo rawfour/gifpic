@@ -19,10 +19,17 @@ export const fetchImages = () => async (dispatch, getState) => {
     if (history.location.pathname !== '/images') {
       history.push(`${process.env.PUBLIC_URL}/images`);
     }
-    const fetchGifs = (offset) =>
+    let fetchGifs = (offset) =>
       query
         ? gf.search(query, { offset, limit: parseInt(limit, 10), lang })
         : gf.trending({ offset, limit: parseInt(limit, 10) });
+
+    const { data: gifs } = await fetchGifs();
+
+    if (!gifs.length) {
+      fetchGifs = false;
+    }
+
     await setTimeout(() => {
       dispatch({
         type: FETCH_DONE,

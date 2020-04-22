@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 import styled from 'styled-components';
@@ -9,9 +9,8 @@ import Text from 'components/Text';
 import Tooltip from 'components/Tooltip';
 import Switch from '@material-ui/core/Switch';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ViewWrapper from 'components/ViewWrapper';
+import Select from 'components/Select';
 import {
   changeLang as changeLangAction,
   changeTheme as changeThemeAction,
@@ -42,29 +41,6 @@ const StyledOption = styled.div`
   align-items: flex-end;
 `;
 
-const StyledMenuButton = styled.button`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100px;
-  font-size: 1.8rem;
-  color: ${({ theme }) => theme.colors.text};
-  background-color: transparent;
-  border: none;
-  outline: 0;
-`;
-
-const StyledMenu = styled(Menu)`
-  & > .MuiPaper-root {
-    background-color: ${({ theme }) => theme.colors.focusBackground};
-  }
-`;
-
-const StyledMenuItem = styled(MenuItem)`
-  color: ${({ theme }) => theme.colors.text};
-  font-size: 1.8rem;
-`;
-
 const customTheme = createMuiTheme({
   palette: {
     primary: {
@@ -72,11 +48,8 @@ const customTheme = createMuiTheme({
     },
   },
   overrides: {
-    // Style sheet name
     MuiSvgIcon: {
-      // Name of the rule
       root: {
-        // Some CSS
         fontSize: '2.5rem',
       },
     },
@@ -95,20 +68,18 @@ const customTheme = createMuiTheme({
 });
 
 const Settings = ({ changeTheme, changeLang, currentLang, isDark, t }) => {
-  const [anchorEl, setAnchorEl] = useState(null);
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+  const handleSetLang = (e) => {
+    const { value } = e.target;
+    i18n.changeLanguage(value);
+    changeLang(value);
   };
 
-  const handleClose = (lang_full, lang_short) => {
-    changeLang(lang_full);
-    i18n.changeLanguage(lang_short);
-    setAnchorEl(null);
+  const langList = {
+    options: ['English', 'Deutsch', 'Polish'],
   };
 
   return (
-    <>
+    <ViewWrapper>
       <SectionTitle>{t('Settings')}</SectionTitle>
       <StyledSettingsWrapper>
         <StyledOptionWrapper>
@@ -138,38 +109,11 @@ const Settings = ({ changeTheme, changeLang, currentLang, isDark, t }) => {
           </StyledOptionDescription>
 
           <StyledOption>
-            <ThemeProvider theme={customTheme}>
-              <StyledMenuButton
-                type="button"
-                aria-controls="simple-menu"
-                aria-haspopup="true"
-                onClick={handleClick}
-              >
-                {t(currentLang)}
-                <ExpandMoreIcon />
-              </StyledMenuButton>
-              <StyledMenu
-                id="simple-menu"
-                anchorEl={anchorEl}
-                keepMounted
-                open={Boolean(anchorEl)}
-                onClose={() => setAnchorEl(null)}
-              >
-                <StyledMenuItem onClick={() => handleClose('Deutsch', 'de')}>
-                  {t('Deutsch')}
-                </StyledMenuItem>
-                <StyledMenuItem onClick={() => handleClose('English', 'en')}>
-                  {t('English')}
-                </StyledMenuItem>
-                <StyledMenuItem onClick={() => handleClose('Polish', 'pl')}>
-                  {t('Polish')}
-                </StyledMenuItem>
-              </StyledMenu>
-            </ThemeProvider>
+            <Select data={langList} value={currentLang} action={handleSetLang} />
           </StyledOption>
         </StyledOptionWrapper>
       </StyledSettingsWrapper>
-    </>
+    </ViewWrapper>
   );
 };
 

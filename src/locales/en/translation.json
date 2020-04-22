@@ -5,12 +5,12 @@
   "Theme_tooltip": "Toggle light/dark theme",
   "Lang": "Language",
   "Lang_desc": "Change the language of the displayed content.",
-  "English": "English",
-  "Polish": "Polish",
-  "Deutsch": "Deutsch",
   "Search": "Search gifs...",
   "Trending": "Trending",
   "Regional_tooltip": "Specify default country for regional content",
   "Limit": "Limit",
-  "Limit_tooltip": "Number of gifs to show on start"
+  "Limit_tooltip": "Number of gifs to show on start",
+  "No_results": "Sorry, nothing found 😕... Please try other keywords",
+  "Error": "Error",
+  "Not_found": "Not found"
 }

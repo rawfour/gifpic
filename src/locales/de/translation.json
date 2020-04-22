@@ -5,12 +5,12 @@
   "Theme_tooltip": "Hell / Dunkel-Thema umschalten",
   "Lang": "Sprache",
   "Lang_desc": "Ändern Sie die Sprache des angezeigten Inhalts.",
-  "English": "Englisch",
-  "Polish": "Polieren",
-  "Deutsch": "Deutsch",
   "Search": "Gifs suchen ...",
   "Trending": "Trend",
   "Regional_tooltip": "Geben Sie das Standardland für regionale Inhalte an",
   "Limit": "Grenze",
-  "Limit_tooltip": "Anzahl der Gifs, die beim Start angezeigt werden sollen"
+  "Limit_tooltip": "Anzahl der Gifs, die beim Start angezeigt werden sollen",
+  "No_results": "Entschuldigung, nichts gefunden 😕... Bitte versuchen Sie es mit anderen Schlüsselwörtern",
+  "Error": "Error",
+  "Not_found": "Nicht gefunden"
 }

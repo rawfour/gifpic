@@ -23,6 +23,10 @@ const GlobalStyle = createGlobalStyle`
     color: ${({ theme }) => theme.colors.text};
     background-color: ${({ theme }) => theme.colors.background};
     margin-right: 16px;
+    background-image: url(${({ theme }) => theme.bgImage});
+    background-attachment: fixed;
+    background-size: cover;
+
   }
 
 `;

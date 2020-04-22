@@ -1,11 +1,21 @@
 import React, { useEffect, useRef, useState, useLayoutEffect } from 'react';
+import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { connect } from 'react-redux';
 import { fetchImages as fetchImagesAction } from 'services/imageList/actions';
-
 import Grid from 'components/Grid';
 import Skeleton from 'components/Skeleton';
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+`;
 
 const StyledGalleryWrapper = styled.div`
   width: 100%;
@@ -13,6 +23,22 @@ const StyledGalleryWrapper = styled.div`
   display: grid;
   justify-content: center;
   align-items: center;
+`;
+
+const StyledNoResults = styled.p`
+  display: block;
+  text-align: center;
+  font-size: 1.8rem;
+  color: ${({ theme }) => theme.colors.grayText};
+  opacity: 0;
+  transition: 0.2s;
+  animation: ${fadeIn} 1s 1s forwards;
+`;
+
+const StyledGrid = styled(Grid)`
+  opacity: 0;
+  transition: 0.2s;
+  animation: ${fadeIn} 1s 1s forwards;
 `;
 
 function useWindowSize() {
@@ -28,7 +54,7 @@ function useWindowSize() {
   return size;
 }
 
-const GridGallery = ({ fetchImages, images, loading, query, limit, lang }) => {
+const GridGallery = ({ fetchImages, images, loading, limit, lang, t }) => {
   const [width] = useWindowSize();
   const [wrapperWidth, setWrapperWidth] = useState();
   const [columnsCount, setColumnsCount] = useState();
@@ -47,31 +73,33 @@ const GridGallery = ({ fetchImages, images, loading, query, limit, lang }) => {
 
   useEffect(() => {
     fetchImages();
-  }, [query, limit, lang]);
+  }, [limit, lang]);
 
-  return (
-    <StyledGalleryWrapper ref={ref}>
-      {loading ? (
-        <Skeleton wrapperWidth={wrapperWidth} columnsCount={columnsCount} />
-      ) : (
-        <Grid wrapperWidth={wrapperWidth} columnsCount={columnsCount} images={images} />
-      )}
-    </StyledGalleryWrapper>
-  );
+  let content;
+  if (loading) {
+    content = <Skeleton wrapperWidth={wrapperWidth} columnsCount={columnsCount} />;
+  } else if (!images) {
+    content = <StyledNoResults>{t('No_results')}</StyledNoResults>;
+  } else {
+    content = (
+      <StyledGrid wrapperWidth={wrapperWidth} columnsCount={columnsCount} images={images} />
+    );
+  }
+
+  return <StyledGalleryWrapper ref={ref}>{content}</StyledGalleryWrapper>;
 };
 
 GridGallery.propTypes = {
   fetchImages: PropTypes.func.isRequired,
-  images: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  images: PropTypes.oneOfType([PropTypes.func, PropTypes.bool]),
   loading: PropTypes.bool.isRequired,
-  query: PropTypes.string,
   limit: PropTypes.string.isRequired,
   lang: PropTypes.string.isRequired,
+  t: PropTypes.shape().isRequired,
 };
 
 GridGallery.defaultProps = {
   images: null,
-  query: '',
 };
 
 const mapDispatchToProps = (dispatch) => ({
@@ -81,9 +109,8 @@ const mapDispatchToProps = (dispatch) => ({
 const mapStateToProps = (state) => ({
   images: state.images.images,
   loading: state.images.loading,
-  query: state.images.query,
   limit: state.images.limit,
   lang: state.images.lang,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(GridGallery);
+export default connect(mapStateToProps, mapDispatchToProps)(withNamespaces()(GridGallery));
