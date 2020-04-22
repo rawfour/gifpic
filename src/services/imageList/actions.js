@@ -1,3 +1,5 @@
+import { GiphyFetch } from '@giphy/js-fetch-api';
+import history from '../../history';
 import {
   FETCH_BEGINE,
   FETCH_DONE,
@@ -5,9 +7,7 @@ import {
   SET_QUERY,
   SET_LIMIT,
   SET_LANG,
-} from 'services/actionTypes';
-import history from 'history.js';
-import { GiphyFetch } from '@giphy/js-fetch-api';
+} from '../actionTypes';
 
 const giphyApiKey = process.env.REACT_APP_API_KEY;
 const gf = new GiphyFetch(giphyApiKey);

@@ -5,7 +5,7 @@ import {
   SET_QUERY,
   SET_LIMIT,
   SET_LANG,
-} from 'services/actionTypes';
+} from '../actionTypes';
 
 const initialState = {
   images: null,

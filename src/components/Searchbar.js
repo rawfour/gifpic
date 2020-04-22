@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import SearchIcon from 'assets/svg/SearchIcon.svg';
+import SearchIcon from '../assets/svg/SearchIcon.svg';
 import {
   setQuery as setQueryAction,
   fetchImages as fetchImagesAction,
-} from 'services/imageList/actions';
+} from '../services/imageList/actions';
 
 const StyledSearchbarWrapper = styled.form`
   flex-basis: 100%;

@@ -1,18 +1,16 @@
 import React, { Suspense } from 'react';
 import styled from 'styled-components';
 import { Router, Switch, Route, Redirect } from 'react-router-dom';
-import history from 'history.js';
-// import ImageList from 'views/ImageList';
-// import Settings from 'views/Settings';
-import NotFound from 'views/NotFound';
-import ErrorView from 'views/Error';
-import Header from 'components/Header';
-import MainTemplate from 'templates/MainTemplate';
-import GlobalStyle from 'theme/GlobalStyle';
-import Loader from 'components/Loader';
+import history from './history';
+import Header from './components/Header';
+import MainTemplate from './templates/MainTemplate';
+import GlobalStyle from './theme/GlobalStyle';
+import Loader from './components/Loader';
 
-const ImageList = React.lazy(() => import('views/ImageList'));
-const Settings = React.lazy(() => import('views/Settings'));
+const ImageList = React.lazy(() => import('./views/ImageList'));
+const Settings = React.lazy(() => import('./views/Settings'));
+const NotFound = React.lazy(() => import('./views/ImageList'));
+const ErrorView = React.lazy(() => import('./views/Settings'));
 
 const StyledMainwrapper = styled.div`
   max-width: 1500px;
@@ -29,7 +27,7 @@ function App() {
         <Header />
 
         <StyledMainwrapper>
-          <Suspense fallback={Loader}>
+          <Suspense fallback={<Loader />}>
             <Switch>
               <Route
                 path={`${process.env.PUBLIC_URL}/`}

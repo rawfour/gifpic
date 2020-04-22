@@ -3,18 +3,18 @@ import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import SectionTitle from 'components/SectionTitle';
-import Title from 'components/Title';
-import Text from 'components/Text';
-import Tooltip from 'components/Tooltip';
 import Switch from '@material-ui/core/Switch';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import ViewWrapper from 'components/ViewWrapper';
-import Select from 'components/Select';
+import SectionTitle from '../components/SectionTitle';
+import Title from '../components/Title';
+import Text from '../components/Text';
+import Tooltip from '../components/Tooltip';
+import ViewWrapper from '../components/ViewWrapper';
+import Select from '../components/Select';
 import {
   changeLang as changeLangAction,
   changeTheme as changeThemeAction,
-} from 'services/settings/actions';
+} from '../services/settings/actions';
 import i18n from '../i18n';
 
 const StyledSettingsWrapper = styled.div`

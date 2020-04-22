@@ -1,5 +1,5 @@
-import BgLight from 'assets/svg/BgLight.svg';
-import BgDark from 'assets/svg/BgDark.svg';
+import BgLight from '../assets/svg/BgLight.svg';
+import BgDark from '../assets/svg/BgDark.svg';
 
 export const lightTheme = {
   colors: {

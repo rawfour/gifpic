@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
-import ViewWrapper from 'components/ViewWrapper';
-import SectionTitle from 'components/SectionTitle';
+import ViewWrapper from '../components/ViewWrapper';
+import SectionTitle from '../components/SectionTitle';
 
 const ErrorView = ({ t }) => {
   return (
@@ -13,7 +13,7 @@ const ErrorView = ({ t }) => {
 };
 
 ErrorView.propTypes = {
-  t: PropTypes.shape().isRequired,
+  t: PropTypes.func.isRequired,
 };
 
 export default withNamespaces()(ErrorView);

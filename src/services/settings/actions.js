@@ -1,4 +1,4 @@
-import { CHANGE_LANG, CHANGE_THEME } from 'services/actionTypes';
+import { CHANGE_LANG, CHANGE_THEME } from '../actionTypes';
 
 export const changeLang = (lang) => {
   return {

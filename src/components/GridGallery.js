@@ -3,9 +3,9 @@ import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
 import styled, { keyframes } from 'styled-components';
 import { connect } from 'react-redux';
-import { fetchImages as fetchImagesAction } from 'services/imageList/actions';
-import Grid from 'components/Grid';
-import Skeleton from 'components/Skeleton';
+import Grid from './Grid';
+import Skeleton from './Skeleton';
+import { fetchImages as fetchImagesAction } from '../services/imageList/actions';
 
 const fadeIn = keyframes`
   from {
@@ -95,7 +95,7 @@ GridGallery.propTypes = {
   loading: PropTypes.bool.isRequired,
   limit: PropTypes.string.isRequired,
   lang: PropTypes.string.isRequired,
-  t: PropTypes.shape().isRequired,
+  t: PropTypes.func.isRequired,
 };
 
 GridGallery.defaultProps = {

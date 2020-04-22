@@ -37,7 +37,8 @@ const ViewWrapper = ({ children }) => {
 };
 
 ViewWrapper.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.oneOfType([PropTypes.element, PropTypes.arrayOf(PropTypes.shape())])
+    .isRequired,
 };
 
 export default ViewWrapper;

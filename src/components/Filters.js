@@ -2,9 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 import styled from 'styled-components';
-import Select from 'components/Select';
 import { connect } from 'react-redux';
-import { setLang as setLangAction, setLimit as setLimitAction } from 'services/imageList/actions';
+import {
+  setLang as setLangAction,
+  setLimit as setLimitAction,
+} from '../services/imageList/actions';
+import Select from './Select';
 
 const StyledFiltersWrapper = styled.div`
   display: grid;

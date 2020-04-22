@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import settingsReducer from 'services/settings/reducer';
-import imagesListReducer from 'services/imageList/reducer';
+import settingsReducer from './settings/reducer';
+import imagesListReducer from './imageList/reducer';
 
 export default combineReducers({
   settings: settingsReducer,

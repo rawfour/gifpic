@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Tooltip from 'components/Tooltip';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import HelpIcon from '@material-ui/icons/Help';
+import Tooltip from './Tooltip';
 
 const StyledSelectWrapper = styled.div`
   display: flex;

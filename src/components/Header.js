@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { withNamespaces } from 'react-i18next';
 import styled from 'styled-components';
-import logo from 'assets/img/logo.png';
 import SettingsIcon from '@material-ui/icons/Settings';
-import Searchbar from 'components/Searchbar';
-import Tooltip from 'components/Tooltip';
 import { makeStyles } from '@material-ui/core/styles';
+import Searchbar from './Searchbar';
+import Tooltip from './Tooltip';
+import logo from '../assets/img/logo.png';
 
 const StyledHeader = styled.header`
   width: 100%;
