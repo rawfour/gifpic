@@ -118,7 +118,7 @@ const Settings = ({ changeTheme, changeLang, currentLang, isDark, t }) => {
           </StyledOptionDescription>
           <StyledOption>
             <ThemeProvider theme={customTheme}>
-              <Tooltip title={t('Theme_toggle')}>
+              <Tooltip title={t('Theme_tooltip')}>
                 <Switch
                   checked={isDark}
                   onChange={() => changeTheme(!isDark)}

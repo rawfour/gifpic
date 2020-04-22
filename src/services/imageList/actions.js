@@ -1,4 +1,11 @@
-import { FETCH_BEGINE, FETCH_DONE, SET_ERROR, SET_QUERY } from 'services/actionTypes';
+import {
+  FETCH_BEGINE,
+  FETCH_DONE,
+  SET_ERROR,
+  SET_QUERY,
+  SET_LIMIT,
+  SET_LANG,
+} from 'services/actionTypes';
 import history from 'history.js';
 import { GiphyFetch } from '@giphy/js-fetch-api';
 
@@ -6,16 +13,16 @@ const giphyApiKey = process.env.REACT_APP_API_KEY;
 const gf = new GiphyFetch(giphyApiKey);
 
 export const fetchImages = () => async (dispatch, getState) => {
-  const { query } = getState().images;
-  // const { lang } = getState().settings;
+  const { query, limit, lang } = getState().images;
   try {
     dispatch({ type: FETCH_BEGINE });
     if (history.location.pathname !== '/images') {
       history.push(`${process.env.PUBLIC_URL}/images`);
     }
-    const limit = 25;
     const fetchGifs = (offset) =>
-      query ? gf.search(query, { offset, limit }) : gf.trending({ offset, limit });
+      query
+        ? gf.search(query, { offset, limit: parseInt(limit, 10), lang })
+        : gf.trending({ offset, limit: parseInt(limit, 10) });
     await setTimeout(() => {
       dispatch({
         type: FETCH_DONE,
@@ -31,4 +38,17 @@ export const fetchImages = () => async (dispatch, getState) => {
 export const setQuery = (inputValue) => ({
   type: SET_QUERY,
   payload: inputValue,
+});
+
+export const setLimit = (limit) => {
+  console.log(limit);
+  return {
+    type: SET_LIMIT,
+    payload: limit,
+  };
+};
+
+export const setLang = (lang) => ({
+  type: SET_LANG,
+  payload: lang,
 });

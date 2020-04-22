@@ -2,12 +2,15 @@
   "Settings": "Settings",
   "Theme": "Theme",
   "Theme_desc": "Change the color theme of the page.",
-  "Theme_toggle": "Toggle light/dark theme",
+  "Theme_tooltip": "Toggle light/dark theme",
   "Lang": "Language",
   "Lang_desc": "Change the language of the displayed content.",
   "English": "English",
   "Polish": "Polish",
   "Deutsch": "Deutsch",
   "Search": "Search gifs...",
-  "Trending": "Trending"
+  "Trending": "Trending",
+  "Regional_tooltip": "Specify default country for regional content",
+  "Limit": "Limit",
+  "Limit_tooltip": "Number of gifs to show on start"
 }

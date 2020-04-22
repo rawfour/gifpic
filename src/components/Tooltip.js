@@ -9,12 +9,14 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const Tooltip = ({ children, title }) => {
+const Tooltip = ({ children, title, place }) => {
   const classes = useStyles();
   return (
     <TooltipUi
       title={title}
       aria-label={title}
+      placement={place}
+      arrow
       classes={{
         tooltip: classes.customTooltip,
       }}
@@ -27,6 +29,11 @@ const Tooltip = ({ children, title }) => {
 Tooltip.propTypes = {
   children: PropTypes.shape().isRequired,
   title: PropTypes.string.isRequired,
+  place: PropTypes.string,
+};
+
+Tooltip.defaultProps = {
+  place: 'bottom',
 };
 
 export default Tooltip;

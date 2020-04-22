@@ -2,12 +2,15 @@
   "Settings": "Ustawienia",
   "Theme": "Motyw",
   "Theme_desc": "Zmień motyw klorystyczny strony.",
-  "Theme_toggle": "Przełacz pomiędzy motywem jasnym/ciemnym",
+  "Theme_tooltip": "Przełacz pomiędzy motywem jasnym/ciemnym",
   "Lang": "Język",
   "Lang_desc": "Zmień język wyświetlanych treści.",
   "English": "Angielski",
   "Polish": "Polski",
   "Deutsch": "Niemiecki",
   "Search": "Szukaj gifów...",
-  "Trending": "Popularne"
+  "Trending": "Popularne",
+  "Regional_tooltip": "Określ domyślny kraj dla treści regionalnych",
+  "Limit": "Limit",
+  "Limit_tooltip": "Liczba gifów do pokazania na starcie"
 }

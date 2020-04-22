@@ -2,12 +2,15 @@
   "Settings": "Einstellungen",
   "Theme": "Thema",
   "Theme_desc": "Ändern Sie das Farbthema der Seite.",
-  "Theme_toggle": "Hell / Dunkel-Thema umschalten",
+  "Theme_tooltip": "Hell / Dunkel-Thema umschalten",
   "Lang": "Sprache",
   "Lang_desc": "Ändern Sie die Sprache des angezeigten Inhalts.",
   "English": "Englisch",
   "Polish": "Polieren",
   "Deutsch": "Deutsch",
   "Search": "Gifs suchen ...",
-  "Trending": "Trend"
+  "Trending": "Trend",
+  "Regional_tooltip": "Geben Sie das Standardland für regionale Inhalte an",
+  "Limit": "Grenze",
+  "Limit_tooltip": "Anzahl der Gifs, die beim Start angezeigt werden sollen"
 }
