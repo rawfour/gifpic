@@ -1,5 +1,12 @@
+import { keyframes } from 'styled-components';
 import BgLight from '../assets/svg/BgLight.svg';
 import BgDark from '../assets/svg/BgDark.svg';
+
+const fadeIn = keyframes`
+  100% {
+    opacity: 1;
+  }
+`;
 
 export const lightTheme = {
   colors: {
@@ -13,6 +20,7 @@ export const lightTheme = {
     focusBackground: '#ffffff',
   },
   bgImage: BgLight,
+  fadeIn,
   breakpoints: {
     sm: '(min-width: 600px)',
     md: '(min-width: 900px)',
@@ -33,6 +41,7 @@ export const darkTheme = {
     focusBackground: '#3f3f3f',
   },
   bgImage: BgDark,
+  fadeIn,
   breakpoints: {
     sm: '(min-width: 600px)',
     md: '(min-width: 900px)',

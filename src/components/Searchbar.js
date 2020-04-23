@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { withNamespaces } from 'react-i18next';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import SearchIcon from '../assets/svg/SearchIcon.svg';
+import SearchWhite from '../assets/svg/SearchIconWhite.svg';
+import Search from '../assets/svg/SearchIcon.svg';
 import {
   setQuery as setQueryAction,
   fetchImages as fetchImagesAction,
@@ -11,24 +12,55 @@ import {
 
 const StyledSearchbarWrapper = styled.form`
   flex-basis: 100%;
+  margin-top: 20px;
   order: 2;
+  position: relative;
   @media ${({ theme }) => theme.breakpoints.sm} {
     flex-basis: 300px;
     order: 0;
     margin-left: 20px;
+    margin-top: 0;
   }
   @media ${({ theme }) => theme.breakpoints.md} {
     flex-basis: 400px;
   }
 `;
 
+const StyledSubmitButton = styled.button`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 8px;
+  border: none;
+  opacity: 0;
+  height: 35px;
+  width: 35px;
+  border-radius: 30px;
+  transition: 0.3s;
+  cursor: pointer;
+  background: url(${SearchWhite}) no-repeat 50% 50%;
+  background-size: 15px 15px;
+  background-color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.textWhite};
+`;
+
+const StyledSearchIcon = styled.div`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 8px;
+  height: 35px;
+  width: 35px;
+  opacity: 1;
+  transition: 0.3s;
+  background: url(${Search}) no-repeat 50% 50%;
+`;
+
 const StyledSearchInput = styled.input`
   width: 100%;
   border-radius: 30px;
-  padding: 1.3rem 2rem 1.3rem 5.6rem;
-  margin-top: 20px;
+  padding: 1.3rem 5.6rem;
   border: none;
-  background: url(${SearchIcon}) no-repeat 1.8rem 50%;
   background-color: ${({ theme }) => theme.colors.grayBackground};
   transition: 0.5s;
   color: ${({ theme }) => theme.colors.text};
@@ -36,16 +68,15 @@ const StyledSearchInput = styled.input`
   &:focus {
     box-shadow: 0 0 30px 0 rgba(43, 86, 112, 0.1);
     background-color: ${({ theme }) => theme.colors.focusBackground};
-  }
-  @media ${({ theme }) => theme.breakpoints.sm} {
-    margin: 0;
-    width: 220px;
-    &:focus {
-      width: 100%;
+    background-image: none;
+    padding-left: 2rem;
+    outline: 0;
+    + ${StyledSubmitButton} {
+      opacity: 1;
     }
-  }
-  @media ${({ theme }) => theme.breakpoints.md} {
-    width: 350px;
+    ~ ${StyledSearchIcon} {
+      opacity: 0;
+    }
   }
 `;
 
@@ -66,6 +97,8 @@ const Searchbar = ({ setQuery, t, fetchImages }) => {
         onChange={(e) => setInputValue(e.target.value)}
         placeholder={t('Search')}
       />
+      <StyledSubmitButton type="submit" />
+      <StyledSearchIcon />
     </StyledSearchbarWrapper>
   );
 };

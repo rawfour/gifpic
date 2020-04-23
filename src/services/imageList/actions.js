@@ -17,7 +17,7 @@ export const fetchImages = () => async (dispatch, getState) => {
   try {
     dispatch({ type: FETCH_BEGINE });
     if (history.location.pathname !== '/images') {
-      history.push(`${process.env.PUBLIC_URL}/images`);
+      history.push('/images');
     }
     let fetchGifs = (offset) =>
       query
@@ -38,7 +38,7 @@ export const fetchImages = () => async (dispatch, getState) => {
     }, 2000);
   } catch (error) {
     dispatch({ type: SET_ERROR });
-    history.push(`${process.env.PUBLIC_URL}/error`);
+    history.push('/error');
   }
 };
 
@@ -48,7 +48,6 @@ export const setQuery = (inputValue) => ({
 });
 
 export const setLimit = (limit) => {
-  console.log(limit);
   return {
     type: SET_LIMIT,
     payload: limit,

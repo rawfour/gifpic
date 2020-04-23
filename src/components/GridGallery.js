@@ -1,21 +1,11 @@
 import React, { useEffect, useRef, useState, useLayoutEffect } from 'react';
 import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
 import Grid from './Grid';
 import Skeleton from './Skeleton';
 import { fetchImages as fetchImagesAction } from '../services/imageList/actions';
-
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-`;
 
 const StyledGalleryWrapper = styled.div`
   width: 100%;
@@ -32,13 +22,7 @@ const StyledNoResults = styled.p`
   color: ${({ theme }) => theme.colors.grayText};
   opacity: 0;
   transition: 0.2s;
-  animation: ${fadeIn} 1s 1s forwards;
-`;
-
-const StyledGrid = styled(Grid)`
-  opacity: 0;
-  transition: 0.2s;
-  animation: ${fadeIn} 1s 1s forwards;
+  animation: ${({ theme }) => theme.fadeIn} 1s 1s forwards;
 `;
 
 function useWindowSize() {
@@ -81,9 +65,7 @@ const GridGallery = ({ fetchImages, images, loading, limit, lang, t }) => {
   } else if (!images) {
     content = <StyledNoResults>{t('No_results')}</StyledNoResults>;
   } else {
-    content = (
-      <StyledGrid wrapperWidth={wrapperWidth} columnsCount={columnsCount} images={images} />
-    );
+    content = <Grid wrapperWidth={wrapperWidth} columnsCount={columnsCount} images={images} />;
   }
 
   return <StyledGalleryWrapper ref={ref}>{content}</StyledGalleryWrapper>;

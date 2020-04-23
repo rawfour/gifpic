@@ -71,12 +71,12 @@ const Header = ({ t }) => {
   return (
     <StyledHeader>
       <StyledToolbar>
-        <StyledLogoWrapper to={`${process.env.PUBLIC_URL}/images`}>
+        <StyledLogoWrapper to="/images">
           <StyledLogo src={logo} alt="logo" />
         </StyledLogoWrapper>
         <Searchbar />
         <Tooltip title={t('Settings')}>
-          <StyledSettingsWrapper to={`${process.env.PUBLIC_URL}/settings`}>
+          <StyledSettingsWrapper to="/settings">
             <StyledSettingsIcon className={classes.customIcon} />
           </StyledSettingsWrapper>
         </Tooltip>
