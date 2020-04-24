@@ -33,11 +33,13 @@ const Filters = ({ setLang, setLimit, t, lang, limit }) => {
 
   const limitList = {
     label: t('Limit'),
+    tooltipText: t('Limit_tooltip'),
     options: [25, 50, 100],
   };
 
   const langList = {
     label: t('Lang'),
+    tooltipText: t('Regional_tooltip'),
     options: [
       'en',
       'es',
@@ -76,18 +78,8 @@ const Filters = ({ setLang, setLimit, t, lang, limit }) => {
 
   return (
     <StyledFiltersWrapper>
-      <Select
-        data={langList}
-        tooltipText={t('Regional_tooltip')}
-        value={lang}
-        action={handleSetLang}
-      />
-      <Select
-        data={limitList}
-        tooltipText={t('Limit_tooltip')}
-        value={limit}
-        action={handleSetLimit}
-      />
+      <Select data={langList} value={lang} action={handleSetLang} />
+      <Select data={limitList} value={limit} action={handleSetLimit} />
     </StyledFiltersWrapper>
   );
 };

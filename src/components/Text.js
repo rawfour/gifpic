@@ -1,19 +1,42 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const StyledText = styled.span`
-  font-size: 1.6rem;
+  font-size: ${({ theme, size }) => theme.fontSizes[size] || theme.fontSizes.m};
+  color: ${({ theme, color }) => theme.colors[color] || theme.colors.text};
+  ${({ noResults }) =>
+    noResults &&
+    css`
+      display: block;
+      text-align: center;
+      opacity: 0;
+      transition: 0.2s;
+      animation: ${({ theme }) => theme.animations.fadeIn} 1s 1s forwards;
+    `}
   @media ${({ theme }) => theme.breakpoints.md} {
-    font-size: 2rem;
+    font-size: ${({ theme }) => theme.fontSizes.xl};
   }
 `;
 
-const Text = ({ children }) => {
-  return <StyledText>{children}</StyledText>;
+const Text = ({ children, color, size, noResults }) => {
+  return (
+    <StyledText color={color} size={size} noResults={noResults}>
+      {children}
+    </StyledText>
+  );
 };
 Text.propTypes = {
   children: PropTypes.string.isRequired,
+  color: PropTypes.string,
+  size: PropTypes.string,
+  noResults: PropTypes.bool,
+};
+
+Text.defaultProps = {
+  color: null,
+  size: null,
+  noResults: false,
 };
 
 export default Text;

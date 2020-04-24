@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import Grid from './Grid';
 import Skeleton from './Skeleton';
+import Text from './Text';
 import { fetchImages as fetchImagesAction } from '../services/imageList/actions';
 
 const StyledGalleryWrapper = styled.div`
@@ -13,16 +14,6 @@ const StyledGalleryWrapper = styled.div`
   display: grid;
   justify-content: center;
   align-items: center;
-`;
-
-const StyledNoResults = styled.p`
-  display: block;
-  text-align: center;
-  font-size: 1.8rem;
-  color: ${({ theme }) => theme.colors.grayText};
-  opacity: 0;
-  transition: 0.2s;
-  animation: ${({ theme }) => theme.fadeIn} 1s 1s forwards;
 `;
 
 function useWindowSize() {
@@ -63,7 +54,11 @@ const GridGallery = ({ fetchImages, images, loading, limit, lang, t }) => {
   if (loading) {
     content = <Skeleton wrapperWidth={wrapperWidth} columnsCount={columnsCount} />;
   } else if (!images) {
-    content = <StyledNoResults>{t('No_results')}</StyledNoResults>;
+    content = (
+      <Text color="grayText" size="l" noResults>
+        {t('No_results')}
+      </Text>
+    );
   } else {
     content = <Grid wrapperWidth={wrapperWidth} columnsCount={columnsCount} images={images} />;
   }

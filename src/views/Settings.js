@@ -34,7 +34,7 @@ const StyledOptionDescription = styled.div`
 `;
 
 const StyledOption = styled.div`
-  min-width: 120px;
+  min-width: 180px;
   display: flex;
   flex-direction: column;
   justify-content: center;

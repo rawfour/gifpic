@@ -19,7 +19,7 @@ const initialState = {
 const imagesListReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_BEGINE:
-      return { ...state, loading: true, images: null };
+      return { ...state, loading: true, images: null, error: false };
     case FETCH_DONE:
       return {
         ...state,

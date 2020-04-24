@@ -8,7 +8,10 @@ import Tooltip from './Tooltip';
 const StyledSelectWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  min-width: 120px;
+  @media ${({ theme }) => theme.breakpoints.sm} {
+    min-width: 150px;
+  }
 `;
 
 const StyledInput = styled.label`
@@ -17,7 +20,7 @@ const StyledInput = styled.label`
   justify-content: start;
   align-items: center;
   grid-gap: 10px;
-  font-size: 1.4rem;
+  font-size: ${({ theme }) => theme.fontSizes.s};
   padding: 1rem 2rem;
   color: ${({ theme }) => theme.colors.text};
 `;
@@ -28,19 +31,16 @@ const StyledSelect = styled.select`
   transition: 0.5s;
   color: ${({ theme }) => theme.colors.text};
   border-radius: 30px;
-  padding: 1rem 2rem;
-  font-size: 1.6rem;
-  min-width: 100%;
+  padding: 1rem 3rem 1rem 2rem;
+  font-size: ${({ theme }) => theme.fontSizes.m};
+  width: 100%;
   appearance: none;
-  @media ${({ theme }) => theme.breakpoints.sm} {
-    min-width: 200px;
-  }
 `;
 
 const StyledSelectIcon = styled(ExpandMoreIcon)`
   position: absolute;
   top: 50%;
-  right: 20px;
+  right: 15px;
   transform: translateY(-50%);
 `;
 
@@ -48,17 +48,19 @@ const StyledInnerWrapper = styled.div`
   position: relative;
 `;
 
-const Select = ({ data, tooltipText, action, value }) => {
-  const { label, options } = data;
+const Select = ({ data, action, value }) => {
+  const { label, tooltipText, options } = data;
 
   return (
     <StyledSelectWrapper>
       {label && (
         <StyledInput htmlFor="outlined-age-native-simple">
           {label}
-          <Tooltip place="top" title={tooltipText}>
-            <HelpIcon />
-          </Tooltip>
+          {tooltipText && (
+            <Tooltip place="top" title={tooltipText}>
+              <HelpIcon />
+            </Tooltip>
+          )}
         </StyledInput>
       )}
 
@@ -78,14 +80,12 @@ const Select = ({ data, tooltipText, action, value }) => {
 
 Select.propTypes = {
   data: PropTypes.shape().isRequired,
-  tooltipText: PropTypes.string,
   action: PropTypes.func,
   value: PropTypes.string.isRequired,
 };
 
 Select.defaultProps = {
   action: null,
-  tooltipText: null,
 };
 
 export default Select;

@@ -64,7 +64,7 @@ const StyledSearchInput = styled.input`
   background-color: ${({ theme }) => theme.colors.grayBackground};
   transition: 0.5s;
   color: ${({ theme }) => theme.colors.text};
-  font-size: 1.6rem;
+  font-size: ${({ theme }) => theme.fontSizes.m};
   &:focus {
     box-shadow: 0 0 30px 0 rgba(43, 86, 112, 0.1);
     background-color: ${({ theme }) => theme.colors.focusBackground};

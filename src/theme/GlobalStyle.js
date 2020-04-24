@@ -18,14 +18,10 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     transition: .5s;
-    font-size: 1.6rem;
-    font-family: 'Montserrat', sans-serif;
+    font-size: ${({ theme }) => theme.fontSizes.m};
+    font-family: 'Montserrat', Arial, sans-serif;
     color: ${({ theme }) => theme.colors.text};
     background-color: ${({ theme }) => theme.colors.background};
-    /* background-image: url(${({ theme }) => theme.bgImage});
-    background-attachment: fixed;
-    background-size: cover; */
-
   }
 
 `;

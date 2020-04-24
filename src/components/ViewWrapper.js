@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const StyledViewWrapper = styled.div`
   opacity: 0;
   transition: 0.1s;
-  animation: ${({ theme }) => theme.fadeIn} 1s 1s forwards;
+  animation: ${({ theme }) => theme.animations.fadeIn} 1s 1s forwards;
   position: relative;
   min-height: 100vh;
   &::after {

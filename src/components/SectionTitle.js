@@ -5,9 +5,9 @@ import styled from 'styled-components';
 const StyledSectionTitle = styled.h2`
   margin-bottom: 50px;
   font-weight: 700;
-  font-size: 3.5rem;
+  font-size: ${({ theme }) => theme.fontSizes.xxl};
   @media ${({ theme }) => theme.breakpoints.md} {
-    font-size: 4.5rem;
+    font-size: ${({ theme }) => theme.fontSizes.xxxl};
   }
 `;
 

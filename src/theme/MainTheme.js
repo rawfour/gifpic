@@ -2,11 +2,25 @@ import { keyframes } from 'styled-components';
 import BgLight from '../assets/svg/BgLight.svg';
 import BgDark from '../assets/svg/BgDark.svg';
 
-const fadeIn = keyframes`
-  100% {
-    opacity: 1;
-  }
-`;
+const animations = {
+  fadeIn: keyframes`100% {opacity: 1;}`,
+};
+
+const fontSizes = {
+  s: '1.4rem',
+  m: '1.6rem',
+  l: '1.8rem',
+  xl: '2rem',
+  xxl: '3.5rem',
+  xxxl: '4.5rem',
+};
+
+const breakpoints = {
+  sm: '(min-width: 600px)',
+  md: '(min-width: 900px)',
+  lg: '(min-width: 1280px)',
+  xl: '(min-width: 1920px)',
+};
 
 export const lightTheme = {
   colors: {
@@ -20,13 +34,9 @@ export const lightTheme = {
     focusBackground: '#ffffff',
   },
   bgImage: BgLight,
-  fadeIn,
-  breakpoints: {
-    sm: '(min-width: 600px)',
-    md: '(min-width: 900px)',
-    lg: '(min-width: 1280px)',
-    xl: '(min-width: 1920px)',
-  },
+  fontSizes,
+  animations,
+  breakpoints,
 };
 
 export const darkTheme = {
@@ -41,11 +51,7 @@ export const darkTheme = {
     focusBackground: '#3f3f3f',
   },
   bgImage: BgDark,
-  fadeIn,
-  breakpoints: {
-    sm: '(min-width: 600px)',
-    md: '(min-width: 900px)',
-    lg: '(min-width: 1280px)',
-    xl: '(min-width: 1920px)',
-  },
+  fontSizes,
+  animations,
+  breakpoints,
 };
