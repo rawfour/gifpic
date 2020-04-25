@@ -41,7 +41,8 @@ const StyledSubmitButton = styled.button`
   background: url(${SearchWhite}) no-repeat 50% 50%;
   background-size: 15px 15px;
   background-color: ${({ theme }) => theme.colors.primary};
-  color: ${({ theme }) => theme.colors.textWhite};
+  &:hover {
+  }
 `;
 
 const StyledSearchIcon = styled.div`

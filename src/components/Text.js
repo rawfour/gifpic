@@ -5,13 +5,13 @@ import styled, { css } from 'styled-components';
 const StyledText = styled.span`
   font-size: ${({ theme, size }) => theme.fontSizes[size] || theme.fontSizes.m};
   color: ${({ theme, color }) => theme.colors[color] || theme.colors.text};
+  transition: .2s;
   ${({ noResults }) =>
     noResults &&
     css`
       display: block;
       text-align: center;
       opacity: 0;
-      transition: 0.2s;
       animation: ${({ theme }) => theme.animations.fadeIn} 1s 1s forwards;
     `}
   @media ${({ theme }) => theme.breakpoints.md} {

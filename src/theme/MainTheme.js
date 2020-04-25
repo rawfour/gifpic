@@ -3,7 +3,9 @@ import BgLight from '../assets/svg/BgLight.svg';
 import BgDark from '../assets/svg/BgDark.svg';
 
 const animations = {
-  fadeIn: keyframes`100% {opacity: 1;}`,
+  fadeIn: keyframes`
+  0% {opacity:0}
+  100% {opacity: 1}`,
 };
 
 const fontSizes = {
@@ -30,7 +32,7 @@ export const lightTheme = {
     textWhite: '#ffffff',
     background: '#ffffff',
     backgroundTrans: 'rgba(255,255,255,0.7)',
-    grayBackground: '#fafafa',
+    grayBackground: '#f5f5f5',
     focusBackground: '#ffffff',
   },
   bgImage: BgLight,

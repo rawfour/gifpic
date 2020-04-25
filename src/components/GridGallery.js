@@ -3,7 +3,7 @@ import { withNamespaces } from 'react-i18next';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import Grid from './Grid';
+import { Grid } from '@giphy/react-components';
 import Skeleton from './Skeleton';
 import Text from './Text';
 import { fetchImages as fetchImagesAction } from '../services/imageList/actions';
@@ -14,6 +14,23 @@ const StyledGalleryWrapper = styled.div`
   display: grid;
   justify-content: center;
   align-items: center;
+`;
+
+const GiphyGrid = styled(Grid)`
+  position: relative;
+  z-index: 1;
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: ${({ theme }) => theme.colors.background};
+    z-index: 2;
+    opacity: 1;
+    animation: ${({ theme }) => theme.animations.fadeIn} 1s 1s reverse forwards;
+  }
 `;
 
 function useWindowSize() {
@@ -51,6 +68,7 @@ const GridGallery = ({ fetchImages, images, loading, limit, lang, t }) => {
   }, [limit, lang]);
 
   let content;
+
   if (loading) {
     content = <Skeleton wrapperWidth={wrapperWidth} columnsCount={columnsCount} />;
   } else if (!images) {
@@ -60,7 +78,9 @@ const GridGallery = ({ fetchImages, images, loading, limit, lang, t }) => {
       </Text>
     );
   } else {
-    content = <Grid wrapperWidth={wrapperWidth} columnsCount={columnsCount} images={images} />;
+    content = (
+      <GiphyGrid width={wrapperWidth} columns={columnsCount} gutter={6} fetchGifs={images} />
+    );
   }
 
   return <StyledGalleryWrapper ref={ref}>{content}</StyledGalleryWrapper>;

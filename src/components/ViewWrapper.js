@@ -3,11 +3,15 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const StyledViewWrapper = styled.div`
+  max-width: 1500px;
+  margin: 40px auto;
+  padding: 15px;
+  position: relative;
   opacity: 0;
   transition: 0.1s;
   animation: ${({ theme }) => theme.animations.fadeIn} 1s 1s forwards;
   position: relative;
-  min-height: 100vh;
+  min-height: 50vh;
   &::after {
     content: '';
     position: absolute;

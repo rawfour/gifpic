@@ -9,7 +9,6 @@ import SectionTitle from '../components/SectionTitle';
 import Title from '../components/Title';
 import Text from '../components/Text';
 import Tooltip from '../components/Tooltip';
-import ViewWrapper from '../components/ViewWrapper';
 import Select from '../components/Select';
 import {
   changeLang as changeLangAction,
@@ -31,10 +30,10 @@ const StyledOptionDescription = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding-right: 10px;
 `;
 
 const StyledOption = styled.div`
-  min-width: 180px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -45,24 +44,6 @@ const customTheme = createMuiTheme({
   palette: {
     primary: {
       main: '#646ecb',
-    },
-  },
-  overrides: {
-    MuiSvgIcon: {
-      root: {
-        fontSize: '2.5rem',
-      },
-    },
-    MuiButton: {
-      root: {
-        fontSize: '1.6rem',
-        textTransform: 'none',
-      },
-    },
-    MuiMenuItem: {
-      root: {
-        fontSize: '1.6rem',
-      },
     },
   },
 });
@@ -79,7 +60,7 @@ const Settings = ({ changeTheme, changeLang, currentLang, isDark, t }) => {
   };
 
   return (
-    <ViewWrapper>
+    <>
       <SectionTitle>{t('Settings')}</SectionTitle>
       <StyledSettingsWrapper>
         <StyledOptionWrapper>
@@ -113,7 +94,7 @@ const Settings = ({ changeTheme, changeLang, currentLang, isDark, t }) => {
           </StyledOption>
         </StyledOptionWrapper>
       </StyledSettingsWrapper>
-    </ViewWrapper>
+    </>
   );
 };
 

@@ -6,11 +6,12 @@ import Header from './components/Header';
 import MainTemplate from './templates/MainTemplate';
 import GlobalStyle from './theme/GlobalStyle';
 import Loader from './components/Loader';
+import ViewWrapper from './components/ViewWrapper';
 
 const ImageList = React.lazy(() => import('./views/ImageList'));
 const Settings = React.lazy(() => import('./views/Settings'));
-const NotFound = React.lazy(() => import('./views/ImageList'));
-const ErrorView = React.lazy(() => import('./views/Settings'));
+const NotFound = React.lazy(() => import('./views/NotFound'));
+const ErrorView = React.lazy(() => import('./views/Error'));
 
 const StyledBackgroundWrap = styled.div`
   z-index: -1;
@@ -23,13 +24,6 @@ const StyledBackgroundWrap = styled.div`
   background-image: url(${({ theme }) => theme.bgImage});
 `;
 
-const StyledMainwrapper = styled.div`
-  max-width: 1500px;
-  margin: 40px auto;
-  padding: 15px;
-  position: relative;
-`;
-
 function App() {
   return (
     <MainTemplate>
@@ -37,7 +31,7 @@ function App() {
       <Router history={history}>
         <Header />
         <Suspense fallback={<Loader />}>
-          <StyledMainwrapper>
+          <ViewWrapper>
             <Switch>
               <Route path="/" exact render={() => <Redirect to="/images" />} />
               <Route path="/images" exact component={ImageList} />
@@ -47,7 +41,7 @@ function App() {
               <Route path="*/error" render={() => <Redirect to="/error" />} />
               <Route render={() => <Redirect to="/notFound" />} />
             </Switch>
-          </StyledMainwrapper>
+          </ViewWrapper>
         </Suspense>
       </Router>
       <GlobalStyle />

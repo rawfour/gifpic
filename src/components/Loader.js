@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 
 const StyledLoader = styled.div`
   display: flex;
@@ -9,10 +10,20 @@ const StyledLoader = styled.div`
   height: 500px;
 `;
 
+const customTheme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#646ecb',
+    },
+  },
+});
+
 const Loader = () => {
   return (
     <StyledLoader>
-      <CircularProgress color="primary" />
+      <ThemeProvider theme={customTheme}>
+        <CircularProgress color="primary" />
+      </ThemeProvider>
     </StyledLoader>
   );
 };
