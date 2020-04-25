@@ -26,6 +26,7 @@ const GiphyGrid = styled(Grid)`
     left: 0;
     height: 100%;
     width: 100%;
+    transition: 0.2s;
     background-color: ${({ theme }) => theme.colors.background};
     z-index: 2;
     opacity: 1;

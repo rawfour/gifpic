@@ -4,8 +4,8 @@ import BgDark from '../assets/svg/BgDark.svg';
 
 const animations = {
   fadeIn: keyframes`
-  0% {opacity:0}
-  100% {opacity: 1}`,
+  0% {opacity:0; visibility: hidden;}
+  100% {opacity: 1; visibility: visible;}`,
 };
 
 const fontSizes = {

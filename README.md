@@ -49,4 +49,4 @@ Project uses:
 - React Router
 - Styled Component
 - MaterialUi
-- Tools: ESlint, Husky + lint-staged
+- Tools: ESlint, Husky + lint-staged, Storybook
